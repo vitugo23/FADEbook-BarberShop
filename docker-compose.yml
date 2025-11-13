@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: fadebook_sqlserver
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=YourPassword!1
+      - MSSQL_PID=Developer
+    ports:
+      - "1434:1433"
+    volumes:
+      - fadebook_sqldata:/var/lib/mssql/data
+
+volumes:
+  fadebook_sqldata:

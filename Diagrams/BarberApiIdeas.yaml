@@ -1,0 +1,28 @@
+
+CustomerAppt:
+  api:
+    - requestAppointment
+    - getBarberByService
+    - getServices
+    # TODO: Update appt functionality
+    # TODO: Update login
+
+ApptManagement:
+  api:
+    - getApptsByDay
+    - updateAppt(newStatus)
+    - deleteAppt
+    - lookupApptByUsername
+    # TODO: Make appt through here using component in a pop up dialog
+    # TODO: Submit card information
+
+BarberManagement:
+  api:
+    - getBarbers
+    - getBarberById
+    - getBarbersByService
+    - searchByBarber
+    - updateBarber -> set [1,3] has [1,2] then -2 +3 -> [barber39, service1] [barber39, service3]
+    - createBarber
+    - deleteBarber
+
