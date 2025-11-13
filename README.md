@@ -1,539 +1,389 @@
-# Fadebook - Barbershop Booking System
+# FADEbook - The Night Owls Barber Shop Management System
 
-A modern, full-featured barbershop appointment booking system built with Next.js 15, React 19, and TypeScript. Features a beautiful UI with dark mode support, real-time updates, and comprehensive admin tools.
+A full-stack barber shop management and appointment booking system built collaboratively.
+The application streamlines the booking process for customers and barbers with Google Calendar integration for seamless scheduling.
 
 ## Features
 
-### Customer Features
-- **User Authentication** - Sign up and sign in with username-based authentication
-- **Book Appointments** - Easy-to-use booking interface with service and barber selection
-- **My Appointments** - View all your upcoming and past appointments
-- **Browse Barbers** - View available barbers and their specialties
-- **Browse Services** - See all available services with pricing
+- **Customer Management** - Registration, profile management, appointment history
+- **Barber Management** - Barber profiles, availability, service offerings
+- **Appointment Booking** - Real-time appointment scheduling and management
+- **Google Calendar Integration** - Automatic calendar sync for barbers and customers
+- **Service Management** - Define and manage barber services and pricing
+- **Availability Tracking** - Real-time barber availability updates
+- **Responsive Design** - Works seamlessly on desktop and mobile devices
 
-### Admin Features
-- **Barber Management** - Add, view, and delete barbers with service assignments
-- **Service Management** - Create and manage services with pricing
-- **Customer Overview** - View all registered customers with search functionality
-- **Appointment Monitoring** - Filter and view appointments by date and status
+## Tech Stack
 
-### UI/UX Features
-- **Dark Mode** - Full dark mode support with system preference detection
-- **Responsive Design** - Mobile-first design that works on all devices
-- **Modern UI** - Built with shadcn/ui components and Tailwind CSS
-- **Real-time Updates** - Optimistic updates with React Query
-- **Form Validation** - Client-side validation with helpful error messages
+**Backend:**
+- ASP.NET Core Web API (.NET 9)
+- Entity Framework Core with Code-First Migrations
+- SQL Server (Dockerized)
+- Repository Pattern for data access
+- Service Layer Architecture for business logic
+- RESTful API design principles
+- Google Calendar API integration
+- xUnit for testing
 
-## 🛠️ Tech Stack
+**Frontend:**
+- React 19
+- Modern JavaScript/ES6+
+- Responsive UI components
 
-### Core
-- **[Next.js 15](https://nextjs.org/)** - React framework with App Router
-- **[React 19](https://react.dev/)** - UI library
-- **[TypeScript](https://www.typescriptlang.org/)** - Type safety
+**DevOps & Infrastructure:**
+- Docker & Docker Compose
+- SQL Server in Docker container
+- CI/CD automation scripts
+- Environment-based configuration
 
-### UI & Styling
-- **[Tailwind CSS](https://tailwindcss.com/)** - Utility-first CSS framework
-- **[shadcn/ui](https://ui.shadcn.com/)** - High-quality React components
-- **[Lucide Icons](https://lucide.dev/)** - Beautiful icon library
-- **[next-themes](https://github.com/pacocoursey/next-themes)** - Dark mode support
+## Team - The Night Owls
 
-### State Management & Data Fetching
-- **[TanStack Query (React Query)](https://tanstack.com/query)** - Server state management
-- **[Axios](https://axios-http.com/)** - HTTP client
+This project was developed collaboratively by a team during Revature training. Each member contributed to different aspects of the application.
 
-### Development Tools
-- **[ESLint](https://eslint.org/)** - Code linting
-- **[PostCSS](https://postcss.org/)** - CSS processing
+## Team Members
+* Christian Brewer
+* Victor Torres
+* Charles Trangay
+* Dean Gelbaum
+* Jeremiah Ogembo
+* Muhiddin Kurbonov
 
-## 📋 Prerequisites
+**Victor Torres - Backend Developer & System Architect**
 
-Before you begin, ensure you have the following installed:
-- **Node.js** 18.x or higher
-- **npm** 9.x or higher
-- **Backend API** running on `http://localhost:5288`
+## Contributions (Victor Torres)
 
-## 🚦 Getting Started
+As a backend developer, I was responsible for the entire backend architecture and implementation.
 
-### 1. Clone the Repository
+### **System Architecture & Design**
+- Designed and implemented clean architecture with 11 distinct layers
+- Established Repository Pattern for data abstraction
+- Created Service Layer to encapsulate business logic
+- Developed custom Middleware for cross-cutting concerns
+- Implemented comprehensive Exception handling strategy
+- Organized modular project structure for maintainability
 
+### **Core Backend Development**
+
+#### **API Layer** (`/Controllers`)
+Built RESTful API controllers for:
+- **CustomerController** - Customer registration, profile management, appointment history
+- **BarberController** - Barber profiles, availability management
+- **AppointmentController** - Complete CRUD for appointment booking
+- **ServiceController** - Barber service management (haircuts, styling, etc.)
+- **GoogleCalendarController** - OAuth integration and calendar synchronization
+
+#### **Business Logic Layer** (`/Services`)
+Implemented service classes including:
+- **CustomerAppointmentService** - Appointment business rules and validation
+- **BarberService** - Barber availability logic
+- **AuthenticationService** - User authentication and JWT management
+- **CalendarIntegrationService** - Google Calendar API interactions
+
+#### **Data Access Layer** (`/Repositories`)
+Created repository implementations:
+- Generic Repository pattern for code reusability
+- CustomerRepository, BarberRepository, AppointmentRepository
+- Async/await operations for optimal performance
+- Complex LINQ queries for efficient data retrieval
+
+#### **Database Design** (`/Models` & `/DB`)
+- Designed normalized database schema:
+  - **Customer** - User information and contact details
+  - **Barber** - Barber profiles and credentials
+  - **Appointment** - Booking records with status tracking
+  - **Service** - Service offerings and pricing
+  - **Availability** - Barber scheduling information
+- Implemented Entity Framework Core DbContext
+- Created Code-First migrations for version control
+- Established proper relationships and foreign key constraints
+
+#### **DTOs** (`/DTO`)
+Created Data Transfer Objects for:
+- Customer registration and login requests
+- Appointment booking requests/responses
+- Barber profile updates
+- Service management
+- Validation attributes for data integrity
+
+#### **Middleware & Exception Handling**
+- Custom middleware for request/response logging
+- Global exception handler for consistent error responses
+- Validation middleware for input sanitization
+- Custom exception types for domain-specific errors
+
+#### **Google Calendar Integration**
+- Implemented OAuth 2.0 flow for Google Calendar
+- Automated appointment sync to Google Calendar
+- Token management and refresh logic
+- Calendar event creation/update/deletion
+
+### **Database & Migrations**
+- Designed database schema with proper normalization
+- Created 20+ EF Core migrations for schema evolution
+- Implemented database seeding for development/testing
+- Configured connection string management via environment variables
+
+### **Security Implementation**
+- Password hashing with secure algorithms
+- Password complexity requirements (8+ chars, mixed case, numbers, special chars)
+- JWT token-based authentication
+- Secure credential storage using environment variables
+- OAuth 2.0 implementation for Google integration
+
+## Project Structure
+```
+FADEbook/
+├── api/                          # Backend API (.NET 9)
+│   ├── Controllers/             # API endpoints
+│   │   ├── CustomerController.cs
+│   │   ├── BarberController.cs
+│   │   ├── AppointmentController.cs
+│   │   ├── ServiceController.cs
+│   │   └── GoogleCalendarController.cs
+│   ├── Models/                  # Domain models
+│   │   ├── CustomerModel.cs
+│   │   ├── BarberModel.cs
+│   │   ├── AppointmentModel.cs
+│   │   └── ServiceModel.cs
+│   ├── DTO/                     # Data Transfer Objects
+│   ├── Services/                # Business logic layer
+│   ├── Repositories/            # Data access layer
+│   ├── DB/                      # DbContext & configurations
+│   ├── Migrations/              # EF Core migrations
+│   ├── Middleware/              # Custom middleware
+│   ├── Exceptions/              # Exception handling
+│   ├── Mapping/                 # Object mapping
+│   ├── Program.cs              # Application startup
+│   └── .env.example            # Environment template
+├── Api.Tests/                   # Unit & integration tests
+├── fadebook-frontend/           # React frontend
+├── Diagrams/                    # Architecture diagrams
+├── docker-compose.yml          # Docker orchestration
+├── start-db.sh                 # Database startup script
+├── cicd.sh                     # CI/CD automation
+└── README.md
+```
+
+## Prerequisites
+
+- [.NET 9 SDK](https://dotnet.microsoft.com/download)
+- [Node.js 18+](https://nodejs.org/)
+- [Docker Desktop](https://www.docker.com/products/docker-desktop)
+- SQL Server or Docker
+- Google Cloud Console account (for Calendar API)
+
+## Running Locally
+
+### Option 1: Using Docker (Recommended)
 ```bash
-git clone <repository-url>
+# 1. Create .env file from example
+cp api/.env.example api/.env
+
+# 2. Update .env with your configuration:
+# - Set MSSQL_SA_PASSWORD
+# - Add Google OAuth credentials (optional for basic testing)
+
+# 3. Start all services
+docker-compose up -d
+
+# Services will be available at:
+# API: http://localhost:5288
+# Frontend: http://localhost:3000
+# SQL Server: localhost:1433
+```
+
+### Option 2: Manual Setup
+
+**1. Start SQL Server Database:**
+```bash
+# Using the provided script
+./start-db.sh
+
+# Or manually with Docker
+docker run -e "ACCEPT_EULA=Y" -e "SA_PASSWORD=YourPassword!1" \
+   -p 1433:1433 --name sqlserver \
+   -d mcr.microsoft.com/mssql/server:2022-latest
+```
+
+**2. Configure Environment:**
+```bash
+cd api
+cp .env.example .env
+```
+
+**3. Run Backend:**
+```bash
+cd api
+
+# Restore dependencies
+dotnet restore
+
+# Apply database migrations
+dotnet ef database update
+
+# Run API
+dotnet run
+```
+
+API available at `http://localhost:5288`
+
+**4. Run Frontend:**
+```bash
 cd fadebook-frontend
-```
 
-### 2. Install Dependencies
-
-```bash
+# Install dependencies
 npm install
-```
 
-### 3. Configure Environment
-
-The application expects the backend API to be running on `http://localhost:5288`. If your API runs on a different port, update the `baseURL` in `src/lib/axios.ts`.
-
-### 4. Run Development Server
-
-```bash
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) in your browser.
-
-### 5. Build for Production
-
-```bash
-npm run build
-npm start
-```
-
-## 📁 Project Structure
-
-```
-fadebook-frontend/
-├── src/
-│   ├── app/                      # Next.js App Router pages
-│   │   ├── admin/                # Admin dashboard
-│   │   ├── barbers/              # Barbers listing page
-│   │   ├── book/                 # Appointment booking page
-│   │   ├── my-appointments/      # User's appointments page
-│   │   ├── signin/               # Sign in page
-│   │   ├── signup/               # Sign up page
-│   │   ├── success/              # Booking success page
-│   │   ├── layout.tsx            # Root layout with providers
-│   │   ├── page.tsx              # Home page
-│   │   └── globals.css           # Global styles
-│   │
-│   ├── components/               # React components
-│   │   ├── admin/                # Admin-specific components
-│   │   │   ├── AppointmentsTab.tsx
-│   │   │   ├── BarbersTab.tsx
-│   │   │   ├── CustomersTab.tsx
-│   │   │   └── ServicesTab.tsx
-│   │   ├── ui/                   # shadcn/ui components
-│   │   ├── Navigation.tsx        # Main navigation bar
-│   │   ├── theme-provider.tsx    # Theme context provider
-│   │   └── theme-toggle.tsx      # Dark mode toggle
-│   │
-│   ├── hooks/                    # Custom React hooks
-│   │   ├── useAppointments.ts    # Appointment data hooks
-│   │   ├── useBarbers.ts         # Barber data hooks
-│   │   ├── useCustomers.ts       # Customer data hooks
-│   │   └── useServices.ts        # Service data hooks
-│   │
-│   ├── lib/                      # Utility libraries
-│   │   ├── api/                  # API client functions
-│   │   │   ├── appointments.ts
-│   │   │   ├── barbers.ts
-│   │   │   └── customers.ts
-│   │   ├── axios.ts              # Axios instance configuration
-│   │   └── utils.ts              # Utility functions
-│   │
-│   ├── providers/                # React context providers
-│   │   └── QueryProvider.tsx    # React Query provider
-│   │
-│   └── types/                    # TypeScript type definitions
-│       └── api.ts                # API DTOs and interfaces
-│
-├── public/                       # Static assets
-├── package.json                  # Dependencies and scripts
-├── tsconfig.json                 # TypeScript configuration
-├── tailwind.config.ts            # Tailwind CSS configuration
-├── next.config.ts                # Next.js configuration
-└── README.md                     # This file
-```
-
-## 🎨 UI Components
-
-This project uses [shadcn/ui](https://ui.shadcn.com/) components. Installed components include:
-
-- `badge` - Status indicators and labels
-- `button` - Interactive buttons
-- `card` - Content containers
-- `checkbox` - Multi-select inputs
-- `dialog` - Modal dialogs
-- `dropdown-menu` - Dropdown menus
-- `form` - Form components
-- `input` - Text inputs
-- `label` - Form labels
-- `select` - Dropdown selects
-- `table` - Data tables
-- `tabs` - Tabbed interfaces
-
-### Adding New Components
-
-```bash
-npx shadcn@latest add [component-name]
-```
-
-## 🔌 API Integration
-
-The frontend communicates with a .NET Core backend API. All API calls are made through Axios with a configured base URL.
-
-### API Endpoints Used
-
-#### Authentication
-- `POST /api/customeraccount/signup` - Create new customer account
-- `POST /api/customeraccount/login` - Sign in existing customer
-
-#### Customers
-- `GET /api/customer/customers` - Get all customers (admin)
-- `GET /api/customer/services` - Get all services
-- `GET /api/customer/barbers-by-service/{serviceId}` - Get barbers by service
-- `POST /api/customer/request-appointment` - Create appointment
-
-#### Barbers
-- `GET /api/barber` - Get all barbers
-- `POST /api/barber` - Create barber with services (admin)
-- `DELETE /api/barber/{id}` - Delete barber (admin)
-
-#### Services
-- `GET /api/service` - Get all services
-- `POST /api/service` - Create service (admin)
-- `DELETE /api/service/{id}` - Delete service (admin)
-
-#### Appointments
-- `GET /api/appointment/by-username/{username}` - Get user's appointments
-- `GET /api/appointment/by-date?date={date}` - Get appointments by date (admin)
-- `POST /api/appointment` - Create appointment
-- `PUT /api/appointment/{id}` - Update appointment
-- `DELETE /api/appointment/{id}` - Delete appointment
-
-## 🎯 Key Features Explained
-
-### Authentication System
-- Username-based authentication (no passwords for demo purposes)
-- Session stored in localStorage
-- Automatic redirect to sign in for protected pages
-- Sign out clears all session data
-
-### Appointment Booking Flow
-1. User signs in or signs up
-2. Selects a service from available options
-3. Chooses a barber who offers that service
-4. Picks date and time
-5. Confirms booking
-6. Views confirmation on success page
-
-### Admin Dashboard
-Four-tab interface for complete system management:
-- **Barbers Tab** - Add/remove barbers, assign services
-- **Services Tab** - Create/delete services, set pricing
-- **Customers Tab** - View all customers, search functionality
-- **Appointments Tab** - Filter by date/status, monitor bookings
-
-### Dark Mode
-- Three modes: Light, Dark, System
-- Persists across sessions
-- Smooth transitions
-- Respects system preferences
-
-## 🔧 Configuration
-
-### Axios Configuration
-Located in `src/lib/axios.ts`:
-
-```typescript
-export const axiosInstance = axios.create({
-  baseURL: 'http://localhost:5288',
-  headers: {
-    'Content-Type': 'application/json',
-  },
-});
-```
-
-Update `baseURL` if your backend runs on a different port.
-
-### Theme Configuration
-Located in `src/app/layout.tsx`:
-
-```typescript
-<ThemeProvider
-  attribute="class"
-  defaultTheme="system"
-  enableSystem
-  disableTransitionOnChange
->
-```
-
-## 📱 Pages Overview
-
-### Public Pages
-- **`/`** - Home page with service overview
-- **`/signin`** - Customer sign in
-- **`/signup`** - Customer registration
-- **`/barbers`** - Browse available barbers
-
-### Protected Pages (Require Authentication)
-- **`/book`** - Book new appointment
-- **`/my-appointments`** - View user's appointments
-- **`/success`** - Booking confirmation
-
-### Admin Pages
-- **`/admin`** - Admin dashboard with management tools
-
-## 🧪 Development
-
-### Available Scripts
-
-```bash
 # Start development server
-npm run dev
-
-# Build for production
-npm run build
-
-# Start production server
-npm start
-
-# Run linter
-npm run lint
-
-# Type check
-npx tsc --noEmit
-```
-
-### Code Style
-- **TypeScript** - Strict mode enabled
-- **ESLint** - Configured for Next.js
-- **Prettier** - Code formatting (if configured)
-
-## 🔐 Authentication Flow
-
-```
-┌─────────────┐
-│   Sign Up   │──────┐
-└─────────────┘      │
-                     ▼
-┌─────────────┐   ┌──────────────┐
-│   Sign In   │──▶│  localStorage │
-└─────────────┘   │  - username   │
-                  │  - customerId │
-                  │  - isAuth     │
-                  └──────────────┘
-                         │
-                         ▼
-                  ┌──────────────┐
-                  │ Protected    │
-                  │ Pages        │
-                  └──────────────┘
-```
-
-## 🎨 Styling
-
-### Tailwind CSS
-Custom configuration in `tailwind.config.ts` with:
-- Custom color palette
-- Dark mode support
-- Typography utilities
-- Responsive breakpoints
-
-### CSS Variables
-Theme colors defined in `globals.css`:
-- Light mode colors
-- Dark mode colors
-- Semantic color tokens
-
-## 📦 Dependencies
-
-### Production Dependencies
-```json
-{
-  "@tanstack/react-query": "^5.x",
-  "axios": "^1.x",
-  "lucide-react": "^0.x",
-  "next": "15.x",
-  "next-themes": "^0.x",
-  "react": "19.x",
-  "react-dom": "19.x"
-}
-```
-
-### Development Dependencies
-```json
-{
-  "@types/node": "^20",
-  "@types/react": "^19",
-  "@types/react-dom": "^19",
-  "eslint": "^9",
-  "eslint-config-next": "15.x",
-  "postcss": "^8",
-  "tailwindcss": "^3.4",
-  "typescript": "^5"
-}
-```
-
-## 🚀 Deployment
-
-### Vercel (Recommended)
-1. Push code to GitHub
-2. Import project in Vercel
-3. Configure environment variables (if needed)
-4. Deploy
-
-### Docker
-```bash
-# Build image
-docker build -t fadebook-frontend .
-
-# Run container
-docker run -p 3000:3000 fadebook-frontend
-```
-
-### Manual Deployment
-```bash
-npm run build
 npm start
 ```
 
-## 🐛 Troubleshooting
+Frontend available at `http://localhost:3000`
 
-### Common Issues
+## API Documentation
 
-**Issue**: "Cannot connect to server"
-- **Solution**: Ensure backend API is running on `http://localhost:5288`
+Access interactive API documentation at:
+- **Swagger UI:** `http://localhost:5288/swagger`
 
-**Issue**: "Module not found" errors
-- **Solution**: Run `npm install` to install all dependencies
+### Main API Endpoints
 
-**Issue**: Dark mode not working
-- **Solution**: Clear browser cache and localStorage
+#### **Customer Management**
+- `POST /api/customers/register` - Register new customer
+- `POST /api/customers/login` - Customer authentication
+- `GET /api/customers/{id}` - Get customer profile
+- `PUT /api/customers/{id}` - Update customer profile
+- `GET /api/customers/{id}/appointments` - Get customer's appointments
 
-**Issue**: Authentication not persisting
-- **Solution**: Check browser localStorage is enabled
+#### **Barber Management**
+- `GET /api/barbers` - Get all barbers
+- `GET /api/barbers/{id}` - Get barber details
+- `GET /api/barbers/{id}/availability` - Check barber availability
+- `POST /api/barbers` - Create barber profile (admin)
+- `PUT /api/barbers/{id}` - Update barber profile
 
-**Issue**: Components not found
-- **Solution**: Install missing shadcn components:
-  ```bash
-  npx shadcn@latest add [component-name]
-  ```
+#### **Appointments**
+- `GET /api/appointments` - Get all appointments
+- `GET /api/appointments/{id}` - Get appointment details
+- `POST /api/appointments` - Book new appointment
+- `PUT /api/appointments/{id}` - Update appointment
+- `DELETE /api/appointments/{id}` - Cancel appointment
+- `GET /api/appointments/available-slots` - Get available time slots
 
-## 📝 Environment Variables
+#### **Services**
+- `GET /api/services` - Get all services
+- `GET /api/services/{id}` - Get service details
+- `POST /api/services` - Create service (admin)
+- `PUT /api/services/{id}` - Update service
+- `DELETE /api/services/{id}` - Remove service
 
-Currently, the application uses hardcoded API URL. For production, consider using environment variables:
+#### **Google Calendar Integration**
+- `GET /api/calendar/auth` - Initiate OAuth flow
+- `POST /api/calendar/sync/{appointmentId}` - Sync appointment to calendar
+- `DELETE /api/calendar/remove/{appointmentId}` - Remove from calendar
 
-Create `.env.local`:
-```env
-NEXT_PUBLIC_API_URL=http://localhost:5288
+## Running Tests
+```bash
+cd Api.Tests
+dotnet test --verbosity normal
+
+# With coverage report
+dotnet test /p:CollectCoverage=true /p:CoverageReportFormat=opencover
 ```
 
-Update `src/lib/axios.ts`:
-```typescript
-baseURL: process.env.NEXT_PUBLIC_API_URL || 'http://localhost:5288'
-```
+## Architecture Highlights
 
-## 🧪 Testing
+### **Clean Architecture**
+- Clear separation of concerns across 11 layers
+- Domain models isolated from infrastructure concerns
+- Dependency injection throughout
 
-### Manual Testing Checklist
-- [ ] Sign up with new account
-- [ ] Sign in with existing account
-- [ ] Book appointment
-- [ ] View appointments
-- [ ] Browse barbers
-- [ ] Admin: Add barber
-- [ ] Admin: Add service
-- [ ] Admin: View customers
-- [ ] Admin: Filter appointments
-- [ ] Dark mode toggle
-- [ ] Sign out
+### **Repository Pattern**
+- Abstracted data access layer
+- Easy to swap data sources
+- Simplified unit testing
 
-### Browser Console
-Open browser DevTools (F12) to view:
-- API request/response logs
-- Authentication state changes
-- Error messages
+### **Service Layer**
+- Encapsulated business logic
+- Reusable across multiple controllers
+- Centralized validation rules
 
-## 🤝 Contributing
+### **DTO Pattern**
+- Clean API contracts
+- Prevents over-posting vulnerabilities
+- Simplified API versioning
 
-### Development Workflow
-1. Create feature branch
-2. Make changes
-3. Test thoroughly
-4. Submit pull request
+## Key Learning Outcomes
 
-### Code Standards
-- Use TypeScript for type safety
-- Follow existing component patterns
-- Use shadcn/ui components when possible
-- Keep components under 300 lines
-- Write meaningful commit messages
+### **Backend Development Mastery**
+✅ ASP.NET Core Web API proficiency  
+✅ Entity Framework Core and LINQ  
+✅ Clean Architecture implementation  
+✅ RESTful API design patterns  
+✅ Async/await and performance optimization  
 
-## 📄 License
+### **Database Management**
+✅ SQL Server and T-SQL  
+✅ Code-First migrations  
+✅ Complex relationship modeling  
+✅ Query optimization  
+✅ Transaction management  
 
-This project is part of the Night Owls team project for Revature training.
+### **Integration & APIs**
+✅ OAuth 2.0 implementation  
+✅ Third-party API integration (Google Calendar)  
+✅ JWT authentication  
+✅ Token management and refresh  
 
-## 👥 Team
+### **Software Engineering**
+✅ Design patterns (Repository, Service, Factory)  
+✅ SOLID principles  
+✅ Dependency injection  
+✅ Unit and integration testing  
+✅ Git collaboration in teams  
 
-**The Night Owls** - Revature .NET Training Cohort
+### **DevOps**
+✅ Docker containerization  
+✅ Docker Compose orchestration  
+✅ Environment configuration  
+✅ CI/CD scripting  
 
-## 🔗 Related Projects
+## 📸 Screenshots
 
-- **Backend API** - Located in `../api` directory
-- **Database** - SQL Server with Entity Framework Core
+### API Documentation (Swagger)
+![Swagger UI](screenshots/swagger-ui.png)
+*Comprehensive API documentation with interactive endpoints*
 
-## 📞 Support
+![API Endpoints](screenshots/api-endpoints.png)
+*RESTful endpoints for appointments, customers, and barbers*
 
-For issues or questions:
-1. Check the troubleshooting section above
-2. Review browser console for errors
-3. Verify backend API is running
-4. Check API endpoint documentation
+### Frontend Application
 
-## 🎓 Learning Resources
+![Homepage](screenshots/frontend-homepage.png)
+*Modern Next.js frontend with responsive design*
 
-- [Next.js Documentation](https://nextjs.org/docs)
-- [React Documentation](https://react.dev/)
-- [Tailwind CSS Documentation](https://tailwindcss.com/docs)
-- [shadcn/ui Documentation](https://ui.shadcn.com/)
-- [TanStack Query Documentation](https://tanstack.com/query/latest)
+![Barber Selection](screenshots/barber-list.png)
+*Browse and select from available barbers*
 
-## 🔄 Version History
+### Database Architecture
 
-### Current Version
-- Full authentication system
-- Complete booking flow
-- Admin dashboard with 4 management tabs
-- Dark mode support
-- Responsive design
-- Real-time data updates
-
-## 🚧 Future Enhancements
-
-Potential features for future development:
-- [ ] Email notifications
-- [ ] SMS reminders
-- [ ] Payment integration
-- [ ] Barber availability calendar
-- [ ] Customer reviews and ratings
-- [ ] Photo gallery
-- [ ] Multi-location support
-- [ ] Appointment rescheduling
-- [ ] Cancellation policies
-- [ ] Loyalty program
-- [ ] Gift cards
-- [ ] Social media integration
-
-## 📊 Performance
-
-- **Lighthouse Score**: Optimized for performance
-- **Code Splitting**: Automatic with Next.js
-- **Image Optimization**: Next.js Image component
-- **Font Optimization**: Geist font family with next/font
-
-## 🔒 Security Notes
-
-⚠️ **Important**: Current authentication is for development/demo purposes only.
-
-### For Production:
-- Implement proper JWT authentication
-- Use HTTP-only cookies
-- Add password hashing
-- Implement CSRF protection
-- Use HTTPS only
-- Add rate limiting
-- Implement proper session management
-- Add input sanitization
-- Use environment variables for sensitive data
+![Database Schema](screenshots/database-schema.png)
+*Entity Relationship Diagram showing normalized database design*
 
 ---
 
-**Built with ❤️ by The Night Owls Team**
+## Technical Highlights
+
+- **Comprehensive appointment booking system** with conflict detection
+- **Real-time availability** tracking across multiple barbers
+- **Google Calendar integration** for seamless scheduling
+- **OAuth 2.0 implementation** for secure third-party authorization
+- **11 architectural layers** demonstrating advanced design patterns
+- **Async operations throughout** for optimal performance
+- **Comprehensive validation** at multiple levels
+- **Production-ready error handling** with meaningful user feedback
+- **Dockerized deployment** for easy setup and scaling
+
+---
+
+**Developed by The Night Owls Team**
+
